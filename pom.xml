@@ -12,6 +12,7 @@
         <module>eureka_service</module>
         <module>mysql_service</module>
         <module>redis_service</module>
+        <module>jedis_service</module>
     </modules>
     <packaging>pom</packaging>
     <profiles>

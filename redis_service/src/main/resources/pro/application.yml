@@ -11,4 +11,4 @@ spring:
       max-idle: 8
       max-wait: 10000
     timeout: 0
-  database: 9
+    database: 0

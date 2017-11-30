@@ -1,15 +1,18 @@
 package com.cloud.spring.study.mysql_service.core;
 
-import com.cloud.spring.study.mysql_service.mapper.IUserMapper;
+
+import com.cloud.spring.study.mysql_service.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MapperServiceImpl {
-    public IUserMapper getiUserMapper() {
-        return iUserMapper;
+
+
+    public UserMapper getUserMapper() {
+        return userMapper;
     }
 
     @Autowired
-    private IUserMapper iUserMapper;
+    private UserMapper userMapper;
 }

@@ -3,7 +3,6 @@ package com.cloud.spring.study.mysql_service.controller;
 
 import com.cloud.spring.study.mysql_service.core.MapperServiceImpl;
 import com.cloud.spring.study.mysql_service.entity.User;
-import com.cloud.spring.study.mysql_service.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,13 +26,13 @@ public class ProviderUserMysqlMybatisMapperController {
 
     @GetMapping("/simple/{id}")
     public User findUserById(@PathVariable Long id) {
-        return this.mapperService.getiUserMapper().findUserById(id);
+        return this.mapperService.getUserMapper().findUserById(id);
     }
 
     @GetMapping("/simple/list")
     @ResponseBody
     public List<User> findUserList() {
-        return this.mapperService.getiUserMapper().findAllUsers();
+        return this.mapperService.getUserMapper().findAllUsers();
     }
 
     /**
@@ -51,7 +50,7 @@ public class ProviderUserMysqlMybatisMapperController {
         user.setName(username);
 
 
-        int result = mapperService.getiUserMapper().insertUser(user);
+        int result = mapperService.getUserMapper().insertUser(user);
         if(result > 0){
             return user;
         }

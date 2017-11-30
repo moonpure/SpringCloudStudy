@@ -2,7 +2,7 @@ server:
   port: 8330
 spring:
   application:
-    name: springms-provider-user-mysql-mybatis-mapper  #全部小写
+    name: mysql_service  #全部小写
 
 
 #####################################################################################################

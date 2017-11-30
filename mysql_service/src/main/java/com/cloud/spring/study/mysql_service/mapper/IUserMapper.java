@@ -18,6 +18,8 @@ import java.util.List;
  */
 public interface IUserMapper {
 
+
+
     User findUserById(Long id);
 
     List<User> findAllUsers();

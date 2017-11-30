@@ -24,6 +24,9 @@ public class ProviderUserMysqlMybatisMapperController {
     @Autowired
     private MapperServiceImpl mapperService;
 
+
+
+
     @GetMapping("/simple/{id}")
     public User findUserById(@PathVariable Long id) {
         return this.mapperService.getiUserMapper().findUserById(id);

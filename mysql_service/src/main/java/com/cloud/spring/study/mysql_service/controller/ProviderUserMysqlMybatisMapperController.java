@@ -1,6 +1,7 @@
 package com.cloud.spring.study.mysql_service.controller;
 
 
+import com.cloud.spring.study.mysql_service.core.MapperServiceImpl;
 import com.cloud.spring.study.mysql_service.entity.User;
 import com.cloud.spring.study.mysql_service.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,17 +23,17 @@ import java.util.List;
 public class ProviderUserMysqlMybatisMapperController {
 
     @Autowired
-    private IUserService iUserService;
+    private MapperServiceImpl mapperService;
 
     @GetMapping("/simple/{id}")
     public User findUserById(@PathVariable Long id) {
-        return this.iUserService.findUserById(id);
+        return this.mapperService.getiUserMapper().findUserById(id);
     }
 
     @GetMapping("/simple/list")
     @ResponseBody
     public List<User> findUserList() {
-        return this.iUserService.findAllUsers();
+        return this.mapperService.getiUserMapper().findAllUsers();
     }
 
     /**
@@ -50,7 +51,7 @@ public class ProviderUserMysqlMybatisMapperController {
         user.setName(username);
 
 
-        int result = iUserService.insertUser(user);
+        int result = mapperService.getiUserMapper().insertUser(user);
         if(result > 0){
             return user;
         }

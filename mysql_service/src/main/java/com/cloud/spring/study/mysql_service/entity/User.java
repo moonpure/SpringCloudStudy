@@ -3,9 +3,6 @@ package com.cloud.spring.study.mysql_service.entity;
 public class User {
 
   private Long id;
-
-
-
   private String name;
 
 

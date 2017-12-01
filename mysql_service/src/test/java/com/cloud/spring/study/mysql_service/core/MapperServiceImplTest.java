@@ -16,10 +16,11 @@ public class MapperServiceImplTest {
     @Autowired
     MapperServiceImpl mapperService;
     @Test
-    public void getiUserMapper() throws Exception {
+    private void getiUserMapper() throws Exception {
 
         List<User> users=mapperService.getiUserMapper().findAllUsers();
         User u=users.get(0);
+
 
     }
 

@@ -12,19 +12,14 @@ import java.util.List;
  * 用户微服务Controller。
  *
  * @author hmilyylimh
- *
  * @version 0.0.1
- *
  * @date 2017-10-19
- *
  */
 @RestController
 public class ProviderUserMysqlMybatisMapperController {
 
     @Autowired
     private MapperServiceImpl mapperService;
-
-
 
 
     @GetMapping("/simple/{id}")
@@ -40,21 +35,21 @@ public class ProviderUserMysqlMybatisMapperController {
 
     /**
      * 添加一个student,使用postMapping接收post请求
-     *
+     * <p>
      * http://localhost:8330/simple/addUser?username=user11&age=11&balance=11
      *
      * @return
      */
     @PostMapping("/simple/addUser")
-    public User addUser(@RequestParam(value = "username", required=false) String username, @RequestParam(value = "age", required=false) Integer age, @RequestParam(value = "balance", required=false) String balance){
-        User user=new User();
+    public User addUser(@RequestParam(value = "username", required = false) String username, @RequestParam(value = "age", required = false) Integer age, @RequestParam(value = "balance", required = false) String balance) {
+        User user = new User();
 
 
         user.setName(username);
 
 
         int result = mapperService.getiUserMapper().insertUser(user);
-        if(result > 0){
+        if (result > 0) {
             return user;
         }
 

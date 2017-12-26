@@ -13,6 +13,7 @@
         <module>mysql_service</module>
         <module>redis_service</module>
         <module>jedis_service</module>
+        <module>mybatis_mycommoent</module>
     </modules>
     <packaging>pom</packaging>
     <profiles>

@@ -24,32 +24,67 @@
         <dependency>
             <groupId>org.mybatis.generator</groupId>
             <artifactId>mybatis-generator-core</artifactId>
-            <version>1.3.2</version>
+            <version>1.3.6</version>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.mybatis.generator</groupId>-->
+            <!--<artifactId>hairy-mybatis-generator-core</artifactId>-->
+            <!--<version>1.3.2</version>-->
+        <!--</dependency>-->
     </dependencies>
 
-<build>
-    <plugins>
-        <plugin>
-            <!--Mybatis-generator插件,用于自动生成Mapper和POJO-->
-            <groupId>org.mybatis.generator</groupId>
-            <artifactId>mybatis-generator-maven-plugin</artifactId>
-            <version>1.3.2</version><configuration>
-            <!--配置文件的位置-->
-            <configurationFile>src/main/resources/dev/mybatis-generator-config.xml</configurationFile>
-            <verbose>true</verbose>
-            <overwrite>true</overwrite>
-        </configuration>
-            <executions>
-                <execution>
-                    <id>Generate MyBatis Artifacts</id>
-                    <goals>
-                        <goal>generate</goal>
-                    </goals>
-                </execution>
-            </executions>
-        </plugin>
+    <build>
+        <finalName>MyCommoentGenerator</finalName>
+        <plugins>
+            <!-- compiler插件参数设置，指定编码 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>utf-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <!--Mybatis-generator插件,用于自动生成Mapper和POJO-->
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.3.6</version>
+                <configuration>
+                    <!--配置文件的位置-->
+                    <configurationFile>src/main/resources/dev/mybatis-generator-config.xml</configurationFile>
+                    <verbose>true</verbose>
+                    <overwrite>true</overwrite>
+                </configuration>
+                <dependencies>
+                    <!--<dependency>-->
+                        <!--<groupId>org.mybatis.generator</groupId>-->
+                        <!--<artifactId>hairy-mybatis-generator-core</artifactId>-->
+                        <!--<version>1.3.2</version>-->
+                    <!--</dependency>-->
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>Generate MyBatis Artifacts</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 
-    </plugins>
-</build>
+        </plugins>
+    </build>
+    <distributionManagement>
+        <repository>
+            <id>hry-releases</id>
+            <url>http://122.224.203.210:18081/nexus/content/repositories/hry-releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>hry-snapshots</id>
+            <url>http://122.224.203.210:18081/nexus/content/repositories/hry-snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>

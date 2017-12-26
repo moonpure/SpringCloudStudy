@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.microshop.servicedao.mapper.ConfAreaStandardMapper">
+  <resultMap id="BaseResultMap" type="com.microshop.servicedao.dbmodel.ConfAreaStandard">
+    <id column="AREA_ID" jdbcType="INTEGER" property="areaId" />
+    <result column="AREA_NO" jdbcType="VARCHAR" property="areaNo" />
+    <result column="AREA_NAME" jdbcType="VARCHAR" property="areaName" />
+    <result column="AREA_SHORTNAME" jdbcType="VARCHAR" property="areaShortname" />
+    <result column="AREA_FULLSPELL" jdbcType="VARCHAR" property="areaFullspell" />
+    <result column="AREA_SHORTSPELL" jdbcType="VARCHAR" property="areaShortspell" />
+    <result column="AREA_CODE" jdbcType="VARCHAR" property="areaCode" />
+    <result column="AREA_PARENTNO" jdbcType="VARCHAR" property="areaParentno" />
+    <result column="AREA_OLDNO" jdbcType="VARCHAR" property="areaOldno" />
+    <result column="AREA_RANK" jdbcType="BIT" property="areaRank" />
+    <result column="AREA_ZIPCODE" jdbcType="VARCHAR" property="areaZipcode" />
+    <result column="CONFOLD_AREA_NO" jdbcType="VARCHAR" property="confoldAreaNo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    AREA_ID, AREA_NO, AREA_NAME, AREA_SHORTNAME, AREA_FULLSPELL, AREA_SHORTSPELL, AREA_CODE, 
+    AREA_PARENTNO, AREA_OLDNO, AREA_RANK, AREA_ZIPCODE, CONFOLD_AREA_NO
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from conf_area_standard
+    where AREA_ID = #{areaId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from conf_area_standard
+    where AREA_ID = #{areaId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.microshop.servicedao.dbmodel.ConfAreaStandard">
+    insert into conf_area_standard (AREA_ID, AREA_NO, AREA_NAME, 
+      AREA_SHORTNAME, AREA_FULLSPELL, AREA_SHORTSPELL, 
+      AREA_CODE, AREA_PARENTNO, AREA_OLDNO, 
+      AREA_RANK, AREA_ZIPCODE, CONFOLD_AREA_NO
+      )
+    values (#{areaId,jdbcType=INTEGER}, #{areaNo,jdbcType=VARCHAR}, #{areaName,jdbcType=VARCHAR}, 
+      #{areaShortname,jdbcType=VARCHAR}, #{areaFullspell,jdbcType=VARCHAR}, #{areaShortspell,jdbcType=VARCHAR}, 
+      #{areaCode,jdbcType=VARCHAR}, #{areaParentno,jdbcType=VARCHAR}, #{areaOldno,jdbcType=VARCHAR}, 
+      #{areaRank,jdbcType=BIT}, #{areaZipcode,jdbcType=VARCHAR}, #{confoldAreaNo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.microshop.servicedao.dbmodel.ConfAreaStandard">
+    insert into conf_area_standard
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="areaId != null">
+        AREA_ID,
+      </if>
+      <if test="areaNo != null">
+        AREA_NO,
+      </if>
+      <if test="areaName != null">
+        AREA_NAME,
+      </if>
+      <if test="areaShortname != null">
+        AREA_SHORTNAME,
+      </if>
+      <if test="areaFullspell != null">
+        AREA_FULLSPELL,
+      </if>
+      <if test="areaShortspell != null">
+        AREA_SHORTSPELL,
+      </if>
+      <if test="areaCode != null">
+        AREA_CODE,
+      </if>
+      <if test="areaParentno != null">
+        AREA_PARENTNO,
+      </if>
+      <if test="areaOldno != null">
+        AREA_OLDNO,
+      </if>
+      <if test="areaRank != null">
+        AREA_RANK,
+      </if>
+      <if test="areaZipcode != null">
+        AREA_ZIPCODE,
+      </if>
+      <if test="confoldAreaNo != null">
+        CONFOLD_AREA_NO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="areaId != null">
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="areaNo != null">
+        #{areaNo,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null">
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaShortname != null">
+        #{areaShortname,jdbcType=VARCHAR},
+      </if>
+      <if test="areaFullspell != null">
+        #{areaFullspell,jdbcType=VARCHAR},
+      </if>
+      <if test="areaShortspell != null">
+        #{areaShortspell,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCode != null">
+        #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaParentno != null">
+        #{areaParentno,jdbcType=VARCHAR},
+      </if>
+      <if test="areaOldno != null">
+        #{areaOldno,jdbcType=VARCHAR},
+      </if>
+      <if test="areaRank != null">
+        #{areaRank,jdbcType=BIT},
+      </if>
+      <if test="areaZipcode != null">
+        #{areaZipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="confoldAreaNo != null">
+        #{confoldAreaNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.microshop.servicedao.dbmodel.ConfAreaStandard">
+    update conf_area_standard
+    <set>
+      <if test="areaNo != null">
+        AREA_NO = #{areaNo,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null">
+        AREA_NAME = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaShortname != null">
+        AREA_SHORTNAME = #{areaShortname,jdbcType=VARCHAR},
+      </if>
+      <if test="areaFullspell != null">
+        AREA_FULLSPELL = #{areaFullspell,jdbcType=VARCHAR},
+      </if>
+      <if test="areaShortspell != null">
+        AREA_SHORTSPELL = #{areaShortspell,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCode != null">
+        AREA_CODE = #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaParentno != null">
+        AREA_PARENTNO = #{areaParentno,jdbcType=VARCHAR},
+      </if>
+      <if test="areaOldno != null">
+        AREA_OLDNO = #{areaOldno,jdbcType=VARCHAR},
+      </if>
+      <if test="areaRank != null">
+        AREA_RANK = #{areaRank,jdbcType=BIT},
+      </if>
+      <if test="areaZipcode != null">
+        AREA_ZIPCODE = #{areaZipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="confoldAreaNo != null">
+        CONFOLD_AREA_NO = #{confoldAreaNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where AREA_ID = #{areaId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.microshop.servicedao.dbmodel.ConfAreaStandard">
+    update conf_area_standard
+    set AREA_NO = #{areaNo,jdbcType=VARCHAR},
+      AREA_NAME = #{areaName,jdbcType=VARCHAR},
+      AREA_SHORTNAME = #{areaShortname,jdbcType=VARCHAR},
+      AREA_FULLSPELL = #{areaFullspell,jdbcType=VARCHAR},
+      AREA_SHORTSPELL = #{areaShortspell,jdbcType=VARCHAR},
+      AREA_CODE = #{areaCode,jdbcType=VARCHAR},
+      AREA_PARENTNO = #{areaParentno,jdbcType=VARCHAR},
+      AREA_OLDNO = #{areaOldno,jdbcType=VARCHAR},
+      AREA_RANK = #{areaRank,jdbcType=BIT},
+      AREA_ZIPCODE = #{areaZipcode,jdbcType=VARCHAR},
+      CONFOLD_AREA_NO = #{confoldAreaNo,jdbcType=VARCHAR}
+    where AREA_ID = #{areaId,jdbcType=INTEGER}
+  </update>
+</mapper>

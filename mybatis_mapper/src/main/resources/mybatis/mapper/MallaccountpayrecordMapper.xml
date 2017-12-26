@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.microshop.servicedao.mapper.MallaccountpayrecordMapper">
+  <resultMap id="BaseResultMap" type="com.microshop.servicedao.dbmodel.Mallaccountpayrecord">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="devType" jdbcType="VARCHAR" property="devtype" />
+    <result column="devId" jdbcType="VARCHAR" property="devid" />
+    <result column="userId" jdbcType="VARCHAR" property="userid" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="payId" jdbcType="VARCHAR" property="payid" />
+    <result column="optContent" jdbcType="VARCHAR" property="optcontent" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, ip, devType, devId, userId, createTime, type, payId, optContent
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mallaccountpayrecord
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mallaccountpayrecord
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.microshop.servicedao.dbmodel.Mallaccountpayrecord">
+    insert into mallaccountpayrecord (id, ip, devType, 
+      devId, userId, createTime, 
+      type, payId, optContent
+      )
+    values (#{id,jdbcType=INTEGER}, #{ip,jdbcType=VARCHAR}, #{devtype,jdbcType=VARCHAR}, 
+      #{devid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{type,jdbcType=INTEGER}, #{payid,jdbcType=VARCHAR}, #{optcontent,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.microshop.servicedao.dbmodel.Mallaccountpayrecord">
+    insert into mallaccountpayrecord
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="devtype != null">
+        devType,
+      </if>
+      <if test="devid != null">
+        devId,
+      </if>
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="payid != null">
+        payId,
+      </if>
+      <if test="optcontent != null">
+        optContent,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="devtype != null">
+        #{devtype,jdbcType=VARCHAR},
+      </if>
+      <if test="devid != null">
+        #{devid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="payid != null">
+        #{payid,jdbcType=VARCHAR},
+      </if>
+      <if test="optcontent != null">
+        #{optcontent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.microshop.servicedao.dbmodel.Mallaccountpayrecord">
+    update mallaccountpayrecord
+    <set>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="devtype != null">
+        devType = #{devtype,jdbcType=VARCHAR},
+      </if>
+      <if test="devid != null">
+        devId = #{devid,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="payid != null">
+        payId = #{payid,jdbcType=VARCHAR},
+      </if>
+      <if test="optcontent != null">
+        optContent = #{optcontent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.microshop.servicedao.dbmodel.Mallaccountpayrecord">
+    update mallaccountpayrecord
+    set ip = #{ip,jdbcType=VARCHAR},
+      devType = #{devtype,jdbcType=VARCHAR},
+      devId = #{devid,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      type = #{type,jdbcType=INTEGER},
+      payId = #{payid,jdbcType=VARCHAR},
+      optContent = #{optcontent,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

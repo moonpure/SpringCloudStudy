@@ -89,5 +89,12 @@
                 enableSelectByExample="false" selectByExampleQueryId="false"></table>
         <table  tableName="MallShopFee" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
                 enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table  tableName="conf_area_standard" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+                enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table  tableName="mallaccountpay" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+                enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table  tableName="mallaccountpayrecord" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+                enableSelectByExample="false" selectByExampleQueryId="false"></table>
+
     </context>
 </generatorConfiguration>

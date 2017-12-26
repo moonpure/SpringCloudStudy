@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.microshop.servicedao.mapper.MallaccountpayMapper">
+  <resultMap id="BaseResultMap" type="com.microshop.servicedao.dbmodel.Mallaccountpay">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="devId" jdbcType="VARCHAR" property="devid" />
+    <result column="devType" jdbcType="VARCHAR" property="devtype" />
+    <result column="outTradeNo" jdbcType="VARCHAR" property="outtradeno" />
+    <result column="outTradeAppid" jdbcType="VARCHAR" property="outtradeappid" />
+    <result column="outTradePlatform" jdbcType="VARCHAR" property="outtradeplatform" />
+    <result column="payMoney" jdbcType="INTEGER" property="paymoney" />
+    <result column="fee" jdbcType="INTEGER" property="fee" />
+    <result column="payChannel" jdbcType="INTEGER" property="paychannel" />
+    <result column="payStatus" jdbcType="INTEGER" property="paystatus" />
+    <result column="payErrdesc" jdbcType="VARCHAR" property="payerrdesc" />
+    <result column="payErrcode" jdbcType="VARCHAR" property="payerrcode" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="searchNum" jdbcType="INTEGER" property="searchnum" />
+    <result column="thirdTradeNo" jdbcType="VARCHAR" property="thirdtradeno" />
+    <result column="userId" jdbcType="VARCHAR" property="userid" />
+    <result column="nextFireTime" jdbcType="TIMESTAMP" property="nextfiretime" />
+    <result column="finishTime" jdbcType="TIMESTAMP" property="finishtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, ip, devId, devType, outTradeNo, outTradeAppid, outTradePlatform, payMoney, fee, 
+    payChannel, payStatus, payErrdesc, payErrcode, createTime, updateTime, searchNum, 
+    thirdTradeNo, userId, nextFireTime, finishTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mallaccountpay
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mallaccountpay
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.microshop.servicedao.dbmodel.Mallaccountpay">
+    insert into mallaccountpay (id, ip, devId, 
+      devType, outTradeNo, outTradeAppid, 
+      outTradePlatform, payMoney, fee, 
+      payChannel, payStatus, payErrdesc, 
+      payErrcode, createTime, updateTime, 
+      searchNum, thirdTradeNo, userId, 
+      nextFireTime, finishTime)
+    values (#{id,jdbcType=INTEGER}, #{ip,jdbcType=VARCHAR}, #{devid,jdbcType=VARCHAR}, 
+      #{devtype,jdbcType=VARCHAR}, #{outtradeno,jdbcType=VARCHAR}, #{outtradeappid,jdbcType=VARCHAR}, 
+      #{outtradeplatform,jdbcType=VARCHAR}, #{paymoney,jdbcType=INTEGER}, #{fee,jdbcType=INTEGER}, 
+      #{paychannel,jdbcType=INTEGER}, #{paystatus,jdbcType=INTEGER}, #{payerrdesc,jdbcType=VARCHAR}, 
+      #{payerrcode,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{searchnum,jdbcType=INTEGER}, #{thirdtradeno,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, 
+      #{nextfiretime,jdbcType=TIMESTAMP}, #{finishtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.microshop.servicedao.dbmodel.Mallaccountpay">
+    insert into mallaccountpay
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="devid != null">
+        devId,
+      </if>
+      <if test="devtype != null">
+        devType,
+      </if>
+      <if test="outtradeno != null">
+        outTradeNo,
+      </if>
+      <if test="outtradeappid != null">
+        outTradeAppid,
+      </if>
+      <if test="outtradeplatform != null">
+        outTradePlatform,
+      </if>
+      <if test="paymoney != null">
+        payMoney,
+      </if>
+      <if test="fee != null">
+        fee,
+      </if>
+      <if test="paychannel != null">
+        payChannel,
+      </if>
+      <if test="paystatus != null">
+        payStatus,
+      </if>
+      <if test="payerrdesc != null">
+        payErrdesc,
+      </if>
+      <if test="payerrcode != null">
+        payErrcode,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="updatetime != null">
+        updateTime,
+      </if>
+      <if test="searchnum != null">
+        searchNum,
+      </if>
+      <if test="thirdtradeno != null">
+        thirdTradeNo,
+      </if>
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="nextfiretime != null">
+        nextFireTime,
+      </if>
+      <if test="finishtime != null">
+        finishTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="devid != null">
+        #{devid,jdbcType=VARCHAR},
+      </if>
+      <if test="devtype != null">
+        #{devtype,jdbcType=VARCHAR},
+      </if>
+      <if test="outtradeno != null">
+        #{outtradeno,jdbcType=VARCHAR},
+      </if>
+      <if test="outtradeappid != null">
+        #{outtradeappid,jdbcType=VARCHAR},
+      </if>
+      <if test="outtradeplatform != null">
+        #{outtradeplatform,jdbcType=VARCHAR},
+      </if>
+      <if test="paymoney != null">
+        #{paymoney,jdbcType=INTEGER},
+      </if>
+      <if test="fee != null">
+        #{fee,jdbcType=INTEGER},
+      </if>
+      <if test="paychannel != null">
+        #{paychannel,jdbcType=INTEGER},
+      </if>
+      <if test="paystatus != null">
+        #{paystatus,jdbcType=INTEGER},
+      </if>
+      <if test="payerrdesc != null">
+        #{payerrdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="payerrcode != null">
+        #{payerrcode,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="searchnum != null">
+        #{searchnum,jdbcType=INTEGER},
+      </if>
+      <if test="thirdtradeno != null">
+        #{thirdtradeno,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="nextfiretime != null">
+        #{nextfiretime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishtime != null">
+        #{finishtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.microshop.servicedao.dbmodel.Mallaccountpay">
+    update mallaccountpay
+    <set>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="devid != null">
+        devId = #{devid,jdbcType=VARCHAR},
+      </if>
+      <if test="devtype != null">
+        devType = #{devtype,jdbcType=VARCHAR},
+      </if>
+      <if test="outtradeno != null">
+        outTradeNo = #{outtradeno,jdbcType=VARCHAR},
+      </if>
+      <if test="outtradeappid != null">
+        outTradeAppid = #{outtradeappid,jdbcType=VARCHAR},
+      </if>
+      <if test="outtradeplatform != null">
+        outTradePlatform = #{outtradeplatform,jdbcType=VARCHAR},
+      </if>
+      <if test="paymoney != null">
+        payMoney = #{paymoney,jdbcType=INTEGER},
+      </if>
+      <if test="fee != null">
+        fee = #{fee,jdbcType=INTEGER},
+      </if>
+      <if test="paychannel != null">
+        payChannel = #{paychannel,jdbcType=INTEGER},
+      </if>
+      <if test="paystatus != null">
+        payStatus = #{paystatus,jdbcType=INTEGER},
+      </if>
+      <if test="payerrdesc != null">
+        payErrdesc = #{payerrdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="payerrcode != null">
+        payErrcode = #{payerrcode,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="searchnum != null">
+        searchNum = #{searchnum,jdbcType=INTEGER},
+      </if>
+      <if test="thirdtradeno != null">
+        thirdTradeNo = #{thirdtradeno,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        userId = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="nextfiretime != null">
+        nextFireTime = #{nextfiretime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishtime != null">
+        finishTime = #{finishtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.microshop.servicedao.dbmodel.Mallaccountpay">
+    update mallaccountpay
+    set ip = #{ip,jdbcType=VARCHAR},
+      devId = #{devid,jdbcType=VARCHAR},
+      devType = #{devtype,jdbcType=VARCHAR},
+      outTradeNo = #{outtradeno,jdbcType=VARCHAR},
+      outTradeAppid = #{outtradeappid,jdbcType=VARCHAR},
+      outTradePlatform = #{outtradeplatform,jdbcType=VARCHAR},
+      payMoney = #{paymoney,jdbcType=INTEGER},
+      fee = #{fee,jdbcType=INTEGER},
+      payChannel = #{paychannel,jdbcType=INTEGER},
+      payStatus = #{paystatus,jdbcType=INTEGER},
+      payErrdesc = #{payerrdesc,jdbcType=VARCHAR},
+      payErrcode = #{payerrcode,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      searchNum = #{searchnum,jdbcType=INTEGER},
+      thirdTradeNo = #{thirdtradeno,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=VARCHAR},
+      nextFireTime = #{nextfiretime,jdbcType=TIMESTAMP},
+      finishTime = #{finishtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

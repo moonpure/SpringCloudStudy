@@ -1,41 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.microshop.servicedao.mapper.MallaccountpayrecordMapper">
-  <resultMap id="BaseResultMap" type="com.microshop.servicedao.dbmodel.Mallaccountpayrecord">
-    <id column="id" jdbcType="INTEGER" property="id" />
+<mapper namespace="com.micromall.daoserver.mapper.MallaccountpayrecordMapper">
+  <resultMap id="BaseResultMap" type="com.micromall.daoserver.dbmodel.Mallaccountpayrecord">
+    <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="ip" jdbcType="VARCHAR" property="ip" />
     <result column="devType" jdbcType="VARCHAR" property="devtype" />
     <result column="devId" jdbcType="VARCHAR" property="devid" />
-    <result column="userId" jdbcType="VARCHAR" property="userid" />
+    <result column="userName" jdbcType="VARCHAR" property="username" />
     <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
     <result column="type" jdbcType="INTEGER" property="type" />
     <result column="payId" jdbcType="VARCHAR" property="payid" />
     <result column="optContent" jdbcType="VARCHAR" property="optcontent" />
+    <result column="tradeType" jdbcType="INTEGER" property="tradetype" />
+    <result column="refundNo" jdbcType="VARCHAR" property="refundno" />
+    <result column="amount" jdbcType="INTEGER" property="amount" />
+    <result column="fee" jdbcType="INTEGER" property="fee" />
+    <result column="refundId" jdbcType="VARCHAR" property="refundid" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, ip, devType, devId, userId, createTime, type, payId, optContent
+    id, ip, devType, devId, userName, createTime, type, payId, optContent, tradeType, 
+    refundNo, amount, fee, refundId
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from mallaccountpayrecord
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from mallaccountpayrecord
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.microshop.servicedao.dbmodel.Mallaccountpayrecord">
+  <insert id="insert" parameterType="com.micromall.daoserver.dbmodel.Mallaccountpayrecord">
     insert into mallaccountpayrecord (id, ip, devType, 
-      devId, userId, createTime, 
-      type, payId, optContent
-      )
-    values (#{id,jdbcType=INTEGER}, #{ip,jdbcType=VARCHAR}, #{devtype,jdbcType=VARCHAR}, 
-      #{devid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
-      #{type,jdbcType=INTEGER}, #{payid,jdbcType=VARCHAR}, #{optcontent,jdbcType=VARCHAR}
-      )
+      devId, userName, createTime, 
+      type, payId, optContent, 
+      tradeType, refundNo, amount, 
+      fee, refundId)
+    values (#{id,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, #{devtype,jdbcType=VARCHAR}, 
+      #{devid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{type,jdbcType=INTEGER}, #{payid,jdbcType=VARCHAR}, #{optcontent,jdbcType=VARCHAR}, 
+      #{tradetype,jdbcType=INTEGER}, #{refundno,jdbcType=VARCHAR}, #{amount,jdbcType=INTEGER}, 
+      #{fee,jdbcType=INTEGER}, #{refundid,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.microshop.servicedao.dbmodel.Mallaccountpayrecord">
+  <insert id="insertSelective" parameterType="com.micromall.daoserver.dbmodel.Mallaccountpayrecord">
     insert into mallaccountpayrecord
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -50,8 +58,8 @@
       <if test="devid != null">
         devId,
       </if>
-      <if test="userid != null">
-        userId,
+      <if test="username != null">
+        userName,
       </if>
       <if test="createtime != null">
         createTime,
@@ -65,10 +73,25 @@
       <if test="optcontent != null">
         optContent,
       </if>
+      <if test="tradetype != null">
+        tradeType,
+      </if>
+      <if test="refundno != null">
+        refundNo,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="fee != null">
+        fee,
+      </if>
+      <if test="refundid != null">
+        refundId,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
-        #{id,jdbcType=INTEGER},
+        #{id,jdbcType=VARCHAR},
       </if>
       <if test="ip != null">
         #{ip,jdbcType=VARCHAR},
@@ -79,8 +102,8 @@
       <if test="devid != null">
         #{devid,jdbcType=VARCHAR},
       </if>
-      <if test="userid != null">
-        #{userid,jdbcType=VARCHAR},
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
       </if>
       <if test="createtime != null">
         #{createtime,jdbcType=TIMESTAMP},
@@ -94,9 +117,24 @@
       <if test="optcontent != null">
         #{optcontent,jdbcType=VARCHAR},
       </if>
+      <if test="tradetype != null">
+        #{tradetype,jdbcType=INTEGER},
+      </if>
+      <if test="refundno != null">
+        #{refundno,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="fee != null">
+        #{fee,jdbcType=INTEGER},
+      </if>
+      <if test="refundid != null">
+        #{refundid,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.microshop.servicedao.dbmodel.Mallaccountpayrecord">
+  <update id="updateByPrimaryKeySelective" parameterType="com.micromall.daoserver.dbmodel.Mallaccountpayrecord">
     update mallaccountpayrecord
     <set>
       <if test="ip != null">
@@ -108,8 +146,8 @@
       <if test="devid != null">
         devId = #{devid,jdbcType=VARCHAR},
       </if>
-      <if test="userid != null">
-        userId = #{userid,jdbcType=VARCHAR},
+      <if test="username != null">
+        userName = #{username,jdbcType=VARCHAR},
       </if>
       <if test="createtime != null">
         createTime = #{createtime,jdbcType=TIMESTAMP},
@@ -123,19 +161,39 @@
       <if test="optcontent != null">
         optContent = #{optcontent,jdbcType=VARCHAR},
       </if>
+      <if test="tradetype != null">
+        tradeType = #{tradetype,jdbcType=INTEGER},
+      </if>
+      <if test="refundno != null">
+        refundNo = #{refundno,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=INTEGER},
+      </if>
+      <if test="fee != null">
+        fee = #{fee,jdbcType=INTEGER},
+      </if>
+      <if test="refundid != null">
+        refundId = #{refundid,jdbcType=VARCHAR},
+      </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.microshop.servicedao.dbmodel.Mallaccountpayrecord">
+  <update id="updateByPrimaryKey" parameterType="com.micromall.daoserver.dbmodel.Mallaccountpayrecord">
     update mallaccountpayrecord
     set ip = #{ip,jdbcType=VARCHAR},
       devType = #{devtype,jdbcType=VARCHAR},
       devId = #{devid,jdbcType=VARCHAR},
-      userId = #{userid,jdbcType=VARCHAR},
+      userName = #{username,jdbcType=VARCHAR},
       createTime = #{createtime,jdbcType=TIMESTAMP},
       type = #{type,jdbcType=INTEGER},
       payId = #{payid,jdbcType=VARCHAR},
-      optContent = #{optcontent,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
+      optContent = #{optcontent,jdbcType=VARCHAR},
+      tradeType = #{tradetype,jdbcType=INTEGER},
+      refundNo = #{refundno,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=INTEGER},
+      fee = #{fee,jdbcType=INTEGER},
+      refundId = #{refundid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

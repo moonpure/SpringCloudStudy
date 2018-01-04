@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.microshop.servicedao.mapper.MallorderlogMapper">
-  <resultMap id="BaseResultMap" type="com.microshop.servicedao.dbmodel.Mallorderlog">
+<mapper namespace="com.micromall.daoserver.mapper.MallorderlogMapper">
+  <resultMap id="BaseResultMap" type="com.micromall.daoserver.dbmodel.Mallorderlog">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="orderId" jdbcType="VARCHAR" property="orderid" />
     <result column="flowStatus" jdbcType="INTEGER" property="flowstatus" />
@@ -20,13 +20,13 @@
     delete from mallorderlog
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.microshop.servicedao.dbmodel.Mallorderlog">
+  <insert id="insert" parameterType="com.micromall.daoserver.dbmodel.Mallorderlog">
     insert into mallorderlog (id, orderId, flowStatus, 
       createTime)
     values (#{id,jdbcType=BIGINT}, #{orderid,jdbcType=VARCHAR}, #{flowstatus,jdbcType=INTEGER}, 
       #{createtime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.microshop.servicedao.dbmodel.Mallorderlog">
+  <insert id="insertSelective" parameterType="com.micromall.daoserver.dbmodel.Mallorderlog">
     insert into mallorderlog
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -57,7 +57,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.microshop.servicedao.dbmodel.Mallorderlog">
+  <update id="updateByPrimaryKeySelective" parameterType="com.micromall.daoserver.dbmodel.Mallorderlog">
     update mallorderlog
     <set>
       <if test="orderid != null">
@@ -72,7 +72,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.microshop.servicedao.dbmodel.Mallorderlog">
+  <update id="updateByPrimaryKey" parameterType="com.micromall.daoserver.dbmodel.Mallorderlog">
     update mallorderlog
     set orderId = #{orderid,jdbcType=VARCHAR},
       flowStatus = #{flowstatus,jdbcType=INTEGER},

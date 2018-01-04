@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.microshop.servicedao.mapper.MalluserloginMapper">
-  <resultMap id="BaseResultMap" type="com.microshop.servicedao.dbmodel.Malluserlogin">
+<mapper namespace="com.micromall.daoserver.mapper.MalluserloginMapper">
+  <resultMap id="BaseResultMap" type="com.micromall.daoserver.dbmodel.Malluserlogin">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="userId" jdbcType="VARCHAR" property="userid" />
     <result column="loginName" jdbcType="VARCHAR" property="loginname" />
@@ -25,7 +25,7 @@
     delete from malluserlogin
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.microshop.servicedao.dbmodel.Malluserlogin">
+  <insert id="insert" parameterType="com.micromall.daoserver.dbmodel.Malluserlogin">
     insert into malluserlogin (id, userId, loginName, 
       loginPwd, loginType, platformId, 
       userType, state, createTime
@@ -35,7 +35,7 @@
       #{usertype,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.microshop.servicedao.dbmodel.Malluserlogin">
+  <insert id="insertSelective" parameterType="com.micromall.daoserver.dbmodel.Malluserlogin">
     insert into malluserlogin
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -96,7 +96,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.microshop.servicedao.dbmodel.Malluserlogin">
+  <update id="updateByPrimaryKeySelective" parameterType="com.micromall.daoserver.dbmodel.Malluserlogin">
     update malluserlogin
     <set>
       <if test="userid != null">
@@ -126,7 +126,7 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.microshop.servicedao.dbmodel.Malluserlogin">
+  <update id="updateByPrimaryKey" parameterType="com.micromall.daoserver.dbmodel.Malluserlogin">
     update malluserlogin
     set userId = #{userid,jdbcType=VARCHAR},
       loginName = #{loginname,jdbcType=VARCHAR},

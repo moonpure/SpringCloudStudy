@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.microshop.servicedao.mapper.MallorderpayMapper">
-  <resultMap id="BaseResultMap" type="com.microshop.servicedao.dbmodel.Mallorderpay">
+<mapper namespace="com.micromall.daoserver.mapper.MallorderpayMapper">
+  <resultMap id="BaseResultMap" type="com.micromall.daoserver.dbmodel.Mallorderpay">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="orderId" jdbcType="VARCHAR" property="orderid" />
     <result column="shopId" jdbcType="VARCHAR" property="shopid" />
@@ -26,7 +26,7 @@
     delete from mallorderpay
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.microshop.servicedao.dbmodel.Mallorderpay">
+  <insert id="insert" parameterType="com.micromall.daoserver.dbmodel.Mallorderpay">
     insert into mallorderpay (id, orderId, shopId, 
       userId, payType, payPrice, 
       payFlow, thirdFlow, flowStatus, 
@@ -36,7 +36,7 @@
       #{payflow,jdbcType=VARCHAR}, #{thirdflow,jdbcType=VARCHAR}, #{flowstatus,jdbcType=INTEGER}, 
       #{createtime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.microshop.servicedao.dbmodel.Mallorderpay">
+  <insert id="insertSelective" parameterType="com.micromall.daoserver.dbmodel.Mallorderpay">
     insert into mallorderpay
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -103,7 +103,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.microshop.servicedao.dbmodel.Mallorderpay">
+  <update id="updateByPrimaryKeySelective" parameterType="com.micromall.daoserver.dbmodel.Mallorderpay">
     update mallorderpay
     <set>
       <if test="orderid != null">
@@ -136,7 +136,7 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.microshop.servicedao.dbmodel.Mallorderpay">
+  <update id="updateByPrimaryKey" parameterType="com.micromall.daoserver.dbmodel.Mallorderpay">
     update mallorderpay
     set orderId = #{orderid,jdbcType=VARCHAR},
       shopId = #{shopid,jdbcType=VARCHAR},

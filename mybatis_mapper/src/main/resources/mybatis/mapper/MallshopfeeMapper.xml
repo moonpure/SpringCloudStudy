@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.microshop.servicedao.mapper.MallshopfeeMapper">
-  <resultMap id="BaseResultMap" type="com.microshop.servicedao.dbmodel.Mallshopfee">
+<mapper namespace="com.micromall.daoserver.mapper.MallshopfeeMapper">
+  <resultMap id="BaseResultMap" type="com.micromall.daoserver.dbmodel.Mallshopfee">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="shopName" jdbcType="VARCHAR" property="shopname" />
     <result column="shopId" jdbcType="VARCHAR" property="shopid" />
-    <result column="feeMoney" jdbcType="INTEGER" property="feemoney" />
+    <result column="feeMoneyMax" jdbcType="INTEGER" property="feemoneymax" />
+    <result column="feeMoneyMin" jdbcType="INTEGER" property="feemoneymin" />
     <result column="feeRate" jdbcType="INTEGER" property="feerate" />
     <result column="state" jdbcType="INTEGER" property="state" />
     <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, shopName, shopId, feeMoney, feeRate, state, createTime
+    id, shopName, shopId, feeMoneyMax, feeMoneyMin, feeRate, state, createTime
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -23,15 +24,15 @@
     delete from mallshopfee
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.microshop.servicedao.dbmodel.Mallshopfee">
+  <insert id="insert" parameterType="com.micromall.daoserver.dbmodel.Mallshopfee">
     insert into mallshopfee (id, shopName, shopId, 
-      feeMoney, feeRate, state, 
-      createTime)
+      feeMoneyMax, feeMoneyMin, feeRate, 
+      state, createTime)
     values (#{id,jdbcType=INTEGER}, #{shopname,jdbcType=VARCHAR}, #{shopid,jdbcType=VARCHAR}, 
-      #{feemoney,jdbcType=INTEGER}, #{feerate,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, 
-      #{createtime,jdbcType=TIMESTAMP})
+      #{feemoneymax,jdbcType=INTEGER}, #{feemoneymin,jdbcType=INTEGER}, #{feerate,jdbcType=INTEGER}, 
+      #{state,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.microshop.servicedao.dbmodel.Mallshopfee">
+  <insert id="insertSelective" parameterType="com.micromall.daoserver.dbmodel.Mallshopfee">
     insert into mallshopfee
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -43,8 +44,11 @@
       <if test="shopid != null">
         shopId,
       </if>
-      <if test="feemoney != null">
-        feeMoney,
+      <if test="feemoneymax != null">
+        feeMoneyMax,
+      </if>
+      <if test="feemoneymin != null">
+        feeMoneyMin,
       </if>
       <if test="feerate != null">
         feeRate,
@@ -66,8 +70,11 @@
       <if test="shopid != null">
         #{shopid,jdbcType=VARCHAR},
       </if>
-      <if test="feemoney != null">
-        #{feemoney,jdbcType=INTEGER},
+      <if test="feemoneymax != null">
+        #{feemoneymax,jdbcType=INTEGER},
+      </if>
+      <if test="feemoneymin != null">
+        #{feemoneymin,jdbcType=INTEGER},
       </if>
       <if test="feerate != null">
         #{feerate,jdbcType=INTEGER},
@@ -80,7 +87,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.microshop.servicedao.dbmodel.Mallshopfee">
+  <update id="updateByPrimaryKeySelective" parameterType="com.micromall.daoserver.dbmodel.Mallshopfee">
     update mallshopfee
     <set>
       <if test="shopname != null">
@@ -89,8 +96,11 @@
       <if test="shopid != null">
         shopId = #{shopid,jdbcType=VARCHAR},
       </if>
-      <if test="feemoney != null">
-        feeMoney = #{feemoney,jdbcType=INTEGER},
+      <if test="feemoneymax != null">
+        feeMoneyMax = #{feemoneymax,jdbcType=INTEGER},
+      </if>
+      <if test="feemoneymin != null">
+        feeMoneyMin = #{feemoneymin,jdbcType=INTEGER},
       </if>
       <if test="feerate != null">
         feeRate = #{feerate,jdbcType=INTEGER},
@@ -104,11 +114,12 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.microshop.servicedao.dbmodel.Mallshopfee">
+  <update id="updateByPrimaryKey" parameterType="com.micromall.daoserver.dbmodel.Mallshopfee">
     update mallshopfee
     set shopName = #{shopname,jdbcType=VARCHAR},
       shopId = #{shopid,jdbcType=VARCHAR},
-      feeMoney = #{feemoney,jdbcType=INTEGER},
+      feeMoneyMax = #{feemoneymax,jdbcType=INTEGER},
+      feeMoneyMin = #{feemoneymin,jdbcType=INTEGER},
       feeRate = #{feerate,jdbcType=INTEGER},
       state = #{state,jdbcType=INTEGER},
       createTime = #{createtime,jdbcType=TIMESTAMP}

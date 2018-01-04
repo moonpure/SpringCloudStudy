@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.microshop.servicedao.mapper.MalluseraddressMapper">
-  <resultMap id="BaseResultMap" type="com.microshop.servicedao.dbmodel.Malluseraddress">
+<mapper namespace="com.micromall.daoserver.mapper.MalluseraddressMapper">
+  <resultMap id="BaseResultMap" type="com.micromall.daoserver.dbmodel.Malluseraddress">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="userId" jdbcType="VARCHAR" property="userid" />
-    <result column="provinceId" jdbcType="INTEGER" property="provinceid" />
-    <result column="cityId" jdbcType="INTEGER" property="cityid" />
-    <result column="areaId" jdbcType="INTEGER" property="areaid" />
+    <result column="provinceId" jdbcType="VARCHAR" property="provinceid" />
+    <result column="cityId" jdbcType="VARCHAR" property="cityid" />
+    <result column="areaId" jdbcType="VARCHAR" property="areaid" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="address" jdbcType="VARCHAR" property="address" />
@@ -28,17 +28,17 @@
     delete from malluseraddress
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.microshop.servicedao.dbmodel.Malluseraddress">
+  <insert id="insert" parameterType="com.micromall.daoserver.dbmodel.Malluseraddress">
     insert into malluseraddress (id, userId, provinceId, 
       cityId, areaId, name, 
       phone, address, defaultAddr, 
       state, createTime)
-    values (#{id,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{provinceid,jdbcType=INTEGER}, 
-      #{cityid,jdbcType=INTEGER}, #{areaid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{provinceid,jdbcType=VARCHAR}, 
+      #{cityid,jdbcType=VARCHAR}, #{areaid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{defaultaddr,jdbcType=INTEGER}, 
       #{state,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.microshop.servicedao.dbmodel.Malluseraddress">
+  <insert id="insertSelective" parameterType="com.micromall.daoserver.dbmodel.Malluseraddress">
     insert into malluseraddress
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -83,13 +83,13 @@
         #{userid,jdbcType=VARCHAR},
       </if>
       <if test="provinceid != null">
-        #{provinceid,jdbcType=INTEGER},
+        #{provinceid,jdbcType=VARCHAR},
       </if>
       <if test="cityid != null">
-        #{cityid,jdbcType=INTEGER},
+        #{cityid,jdbcType=VARCHAR},
       </if>
       <if test="areaid != null">
-        #{areaid,jdbcType=INTEGER},
+        #{areaid,jdbcType=VARCHAR},
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
@@ -111,20 +111,20 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.microshop.servicedao.dbmodel.Malluseraddress">
+  <update id="updateByPrimaryKeySelective" parameterType="com.micromall.daoserver.dbmodel.Malluseraddress">
     update malluseraddress
     <set>
       <if test="userid != null">
         userId = #{userid,jdbcType=VARCHAR},
       </if>
       <if test="provinceid != null">
-        provinceId = #{provinceid,jdbcType=INTEGER},
+        provinceId = #{provinceid,jdbcType=VARCHAR},
       </if>
       <if test="cityid != null">
-        cityId = #{cityid,jdbcType=INTEGER},
+        cityId = #{cityid,jdbcType=VARCHAR},
       </if>
       <if test="areaid != null">
-        areaId = #{areaid,jdbcType=INTEGER},
+        areaId = #{areaid,jdbcType=VARCHAR},
       </if>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
@@ -147,12 +147,12 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.microshop.servicedao.dbmodel.Malluseraddress">
+  <update id="updateByPrimaryKey" parameterType="com.micromall.daoserver.dbmodel.Malluseraddress">
     update malluseraddress
     set userId = #{userid,jdbcType=VARCHAR},
-      provinceId = #{provinceid,jdbcType=INTEGER},
-      cityId = #{cityid,jdbcType=INTEGER},
-      areaId = #{areaid,jdbcType=INTEGER},
+      provinceId = #{provinceid,jdbcType=VARCHAR},
+      cityId = #{cityid,jdbcType=VARCHAR},
+      areaId = #{areaid,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},

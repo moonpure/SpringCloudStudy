@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.microshop.servicedao.mapper.MallbannerMapper">
-  <resultMap id="BaseResultMap" type="com.microshop.servicedao.dbmodel.Mallbanner">
+<mapper namespace="com.micromall.daoserver.mapper.MallbannerMapper">
+  <resultMap id="BaseResultMap" type="com.micromall.daoserver.dbmodel.Mallbanner">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="pictureUrl" jdbcType="VARCHAR" property="pictureurl" />
@@ -19,10 +19,11 @@
     <result column="userId" jdbcType="VARCHAR" property="userid" />
     <result column="userName" jdbcType="VARCHAR" property="username" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="isdel" jdbcType="INTEGER" property="isdel" />
   </resultMap>
   <sql id="Base_Column_List">
     id, name, pictureUrl, sort, timeLength, startTime, stopTime, platformId, showType, 
-    bannerType, targetUrl, state, createTime, updateTime, userId, userName, remark
+    bannerType, targetUrl, state, createTime, updateTime, userId, userName, remark, isdel
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -34,21 +35,23 @@
     delete from mallbanner
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.microshop.servicedao.dbmodel.Mallbanner">
+  <insert id="insert" parameterType="com.micromall.daoserver.dbmodel.Mallbanner">
     insert into mallbanner (id, name, pictureUrl, 
       sort, timeLength, startTime, 
       stopTime, platformId, showType, 
       bannerType, targetUrl, state, 
       createTime, updateTime, userId, 
-      userName, remark)
+      userName, remark, isdel
+      )
     values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{pictureurl,jdbcType=VARCHAR}, 
       #{sort,jdbcType=INTEGER}, #{timelength,jdbcType=INTEGER}, #{starttime,jdbcType=TIMESTAMP}, 
       #{stoptime,jdbcType=TIMESTAMP}, #{platformid,jdbcType=INTEGER}, #{showtype,jdbcType=INTEGER}, 
       #{bannertype,jdbcType=INTEGER}, #{targeturl,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, 
       #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, #{userid,jdbcType=VARCHAR}, 
-      #{username,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+      #{username,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{isdel,jdbcType=INTEGER}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.microshop.servicedao.dbmodel.Mallbanner">
+  <insert id="insertSelective" parameterType="com.micromall.daoserver.dbmodel.Mallbanner">
     insert into mallbanner
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -101,6 +104,9 @@
       </if>
       <if test="remark != null">
         remark,
+      </if>
+      <if test="isdel != null">
+        isdel,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -155,9 +161,12 @@
       <if test="remark != null">
         #{remark,jdbcType=VARCHAR},
       </if>
+      <if test="isdel != null">
+        #{isdel,jdbcType=INTEGER},
+      </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.microshop.servicedao.dbmodel.Mallbanner">
+  <update id="updateByPrimaryKeySelective" parameterType="com.micromall.daoserver.dbmodel.Mallbanner">
     update mallbanner
     <set>
       <if test="name != null">
@@ -208,10 +217,13 @@
       <if test="remark != null">
         remark = #{remark,jdbcType=VARCHAR},
       </if>
+      <if test="isdel != null">
+        isdel = #{isdel,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.microshop.servicedao.dbmodel.Mallbanner">
+  <update id="updateByPrimaryKey" parameterType="com.micromall.daoserver.dbmodel.Mallbanner">
     update mallbanner
     set name = #{name,jdbcType=VARCHAR},
       pictureUrl = #{pictureurl,jdbcType=VARCHAR},
@@ -228,7 +240,8 @@
       updateTime = #{updatetime,jdbcType=TIMESTAMP},
       userId = #{userid,jdbcType=VARCHAR},
       userName = #{username,jdbcType=VARCHAR},
-      remark = #{remark,jdbcType=VARCHAR}
+      remark = #{remark,jdbcType=VARCHAR},
+      isdel = #{isdel,jdbcType=INTEGER}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

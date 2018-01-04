@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.microshop.servicedao.mapper.ConfAreaStandardMapper">
-  <resultMap id="BaseResultMap" type="com.microshop.servicedao.dbmodel.ConfAreaStandard">
+<mapper namespace="com.micromall.daoserver.mapper.ConfAreaStandardMapper">
+  <resultMap id="BaseResultMap" type="com.micromall.daoserver.dbmodel.ConfAreaStandard">
     <id column="AREA_ID" jdbcType="INTEGER" property="areaId" />
     <result column="AREA_NO" jdbcType="VARCHAR" property="areaNo" />
     <result column="AREA_NAME" jdbcType="VARCHAR" property="areaName" />
@@ -29,7 +29,7 @@
     delete from conf_area_standard
     where AREA_ID = #{areaId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.microshop.servicedao.dbmodel.ConfAreaStandard">
+  <insert id="insert" parameterType="com.micromall.daoserver.dbmodel.ConfAreaStandard">
     insert into conf_area_standard (AREA_ID, AREA_NO, AREA_NAME, 
       AREA_SHORTNAME, AREA_FULLSPELL, AREA_SHORTSPELL, 
       AREA_CODE, AREA_PARENTNO, AREA_OLDNO, 
@@ -41,7 +41,7 @@
       #{areaRank,jdbcType=BIT}, #{areaZipcode,jdbcType=VARCHAR}, #{confoldAreaNo,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.microshop.servicedao.dbmodel.ConfAreaStandard">
+  <insert id="insertSelective" parameterType="com.micromall.daoserver.dbmodel.ConfAreaStandard">
     insert into conf_area_standard
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="areaId != null">
@@ -120,7 +120,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.microshop.servicedao.dbmodel.ConfAreaStandard">
+  <update id="updateByPrimaryKeySelective" parameterType="com.micromall.daoserver.dbmodel.ConfAreaStandard">
     update conf_area_standard
     <set>
       <if test="areaNo != null">
@@ -159,7 +159,7 @@
     </set>
     where AREA_ID = #{areaId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.microshop.servicedao.dbmodel.ConfAreaStandard">
+  <update id="updateByPrimaryKey" parameterType="com.micromall.daoserver.dbmodel.ConfAreaStandard">
     update conf_area_standard
     set AREA_NO = #{areaNo,jdbcType=VARCHAR},
       AREA_NAME = #{areaName,jdbcType=VARCHAR},

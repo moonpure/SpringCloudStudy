@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.microshop.servicedao.mapper.MallcategoryMapper">
-  <resultMap id="BaseResultMap" type="com.microshop.servicedao.dbmodel.Mallcategory">
-    <id column="id" jdbcType="INTEGER" property="id" />
+<mapper namespace="com.micromall.daoserver.mapper.MallcategoryMapper">
+  <resultMap id="BaseResultMap" type="com.micromall.daoserver.dbmodel.Mallcategory">
+    <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="Name" jdbcType="VARCHAR" property="name" />
     <result column="parentId" jdbcType="INTEGER" property="parentid" />
     <result column="logoUrl" jdbcType="VARCHAR" property="logourl" />
     <result column="grade" jdbcType="INTEGER" property="grade" />
-    <result column="sort" jdbcType="INTEGER" property="sort" />
     <result column="userName" jdbcType="VARCHAR" property="username" />
     <result column="userId" jdbcType="VARCHAR" property="userid" />
     <result column="state" jdbcType="INTEGER" property="state" />
@@ -15,29 +14,29 @@
     <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, Name, parentId, logoUrl, grade, sort, userName, userId, state, remark, createTime
+    id, Name, parentId, logoUrl, grade, userName, userId, state, remark, createTime
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from mallcategory
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from mallcategory
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.microshop.servicedao.dbmodel.Mallcategory">
+  <insert id="insert" parameterType="com.micromall.daoserver.dbmodel.Mallcategory">
     insert into mallcategory (id, Name, parentId, 
-      logoUrl, grade, sort, 
-      userName, userId, state, 
-      remark, createTime)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{parentid,jdbcType=INTEGER}, 
-      #{logourl,jdbcType=VARCHAR}, #{grade,jdbcType=INTEGER}, #{sort,jdbcType=INTEGER}, 
-      #{username,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, 
-      #{remark,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP})
+      logoUrl, grade, userName, 
+      userId, state, remark, 
+      createTime)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{parentid,jdbcType=INTEGER}, 
+      #{logourl,jdbcType=VARCHAR}, #{grade,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, 
+      #{userid,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.microshop.servicedao.dbmodel.Mallcategory">
+  <insert id="insertSelective" parameterType="com.micromall.daoserver.dbmodel.Mallcategory">
     insert into mallcategory
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -54,9 +53,6 @@
       </if>
       <if test="grade != null">
         grade,
-      </if>
-      <if test="sort != null">
-        sort,
       </if>
       <if test="username != null">
         userName,
@@ -76,7 +72,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
-        #{id,jdbcType=INTEGER},
+        #{id,jdbcType=VARCHAR},
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
@@ -89,9 +85,6 @@
       </if>
       <if test="grade != null">
         #{grade,jdbcType=INTEGER},
-      </if>
-      <if test="sort != null">
-        #{sort,jdbcType=INTEGER},
       </if>
       <if test="username != null">
         #{username,jdbcType=VARCHAR},
@@ -110,7 +103,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.microshop.servicedao.dbmodel.Mallcategory">
+  <update id="updateByPrimaryKeySelective" parameterType="com.micromall.daoserver.dbmodel.Mallcategory">
     update mallcategory
     <set>
       <if test="name != null">
@@ -124,9 +117,6 @@
       </if>
       <if test="grade != null">
         grade = #{grade,jdbcType=INTEGER},
-      </if>
-      <if test="sort != null">
-        sort = #{sort,jdbcType=INTEGER},
       </if>
       <if test="username != null">
         userName = #{username,jdbcType=VARCHAR},
@@ -144,20 +134,19 @@
         createTime = #{createtime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.microshop.servicedao.dbmodel.Mallcategory">
+  <update id="updateByPrimaryKey" parameterType="com.micromall.daoserver.dbmodel.Mallcategory">
     update mallcategory
     set Name = #{name,jdbcType=VARCHAR},
       parentId = #{parentid,jdbcType=INTEGER},
       logoUrl = #{logourl,jdbcType=VARCHAR},
       grade = #{grade,jdbcType=INTEGER},
-      sort = #{sort,jdbcType=INTEGER},
       userName = #{username,jdbcType=VARCHAR},
       userId = #{userid,jdbcType=VARCHAR},
       state = #{state,jdbcType=INTEGER},
       remark = #{remark,jdbcType=VARCHAR},
       createTime = #{createtime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

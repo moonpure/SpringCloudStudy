@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.microshop.servicedao.mapper.MallgoodskindMapper">
-  <resultMap id="BaseResultMap" type="com.microshop.servicedao.dbmodel.Mallgoodskind">
+<mapper namespace="com.micromall.daoserver.mapper.MallgoodskindMapper">
+  <resultMap id="BaseResultMap" type="com.micromall.daoserver.dbmodel.Mallgoodskind">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="sku" jdbcType="VARCHAR" property="sku" />
     <result column="goodsName" jdbcType="VARCHAR" property="goodsname" />
     <result column="goodsId" jdbcType="VARCHAR" property="goodsid" />
+    <result column="keywords" jdbcType="VARCHAR" property="keywords" />
     <result column="shopId" jdbcType="VARCHAR" property="shopid" />
     <result column="shopName" jdbcType="VARCHAR" property="shopname" />
     <result column="brandName" jdbcType="VARCHAR" property="brandname" />
-    <result column="thirdCategoryId" jdbcType="INTEGER" property="thirdcategoryid" />
-    <result column="secondCategoryId" jdbcType="INTEGER" property="secondcategoryid" />
-    <result column="firstCategoryId" jdbcType="INTEGER" property="firstcategoryid" />
+    <result column="thirdCategoryId" jdbcType="VARCHAR" property="thirdcategoryid" />
+    <result column="secondCategoryId" jdbcType="VARCHAR" property="secondcategoryid" />
+    <result column="firstCategoryId" jdbcType="VARCHAR" property="firstcategoryid" />
     <result column="categoryName" jdbcType="VARCHAR" property="categoryname" />
     <result column="logoUrl" jdbcType="VARCHAR" property="logourl" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="standardPrice" jdbcType="INTEGER" property="standardprice" />
     <result column="salePrice" jdbcType="INTEGER" property="saleprice" />
     <result column="costPrice" jdbcType="INTEGER" property="costprice" />
-    <result column="barCode" jdbcType="VARCHAR" property="barcode" />
     <result column="trafficPrice" jdbcType="INTEGER" property="trafficprice" />
     <result column="trafficType" jdbcType="INTEGER" property="traffictype" />
     <result column="stock" jdbcType="INTEGER" property="stock" />
@@ -31,9 +31,9 @@
     <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, sku, goodsName, goodsId, shopId, shopName, brandName, thirdCategoryId, secondCategoryId, 
-    firstCategoryId, categoryName, logoUrl, name, standardPrice, salePrice, costPrice, 
-    barCode, trafficPrice, trafficType, stock, version, tempStock, flowStatus, state, 
+    id, sku, goodsName, goodsId, keywords, shopId, shopName, brandName, thirdCategoryId, 
+    secondCategoryId, firstCategoryId, categoryName, logoUrl, name, standardPrice, salePrice, 
+    costPrice, trafficPrice, trafficType, stock, version, tempStock, flowStatus, state, 
     tempVersion, createTime, updateTime
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
@@ -46,29 +46,29 @@
     delete from mallgoodskind
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.microshop.servicedao.dbmodel.Mallgoodskind">
+  <insert id="insert" parameterType="com.micromall.daoserver.dbmodel.Mallgoodskind">
     insert into mallgoodskind (id, sku, goodsName, 
-      goodsId, shopId, shopName, 
-      brandName, thirdCategoryId, secondCategoryId, 
-      firstCategoryId, categoryName, logoUrl, 
-      name, standardPrice, salePrice, 
-      costPrice, barCode, trafficPrice, 
+      goodsId, keywords, shopId, 
+      shopName, brandName, thirdCategoryId, 
+      secondCategoryId, firstCategoryId, categoryName, 
+      logoUrl, name, standardPrice, 
+      salePrice, costPrice, trafficPrice, 
       trafficType, stock, version, 
       tempStock, flowStatus, state, 
       tempVersion, createTime, updateTime
       )
     values (#{id,jdbcType=VARCHAR}, #{sku,jdbcType=VARCHAR}, #{goodsname,jdbcType=VARCHAR}, 
-      #{goodsid,jdbcType=VARCHAR}, #{shopid,jdbcType=VARCHAR}, #{shopname,jdbcType=VARCHAR}, 
-      #{brandname,jdbcType=VARCHAR}, #{thirdcategoryid,jdbcType=INTEGER}, #{secondcategoryid,jdbcType=INTEGER}, 
-      #{firstcategoryid,jdbcType=INTEGER}, #{categoryname,jdbcType=VARCHAR}, #{logourl,jdbcType=VARCHAR}, 
-      #{name,jdbcType=VARCHAR}, #{standardprice,jdbcType=INTEGER}, #{saleprice,jdbcType=INTEGER}, 
-      #{costprice,jdbcType=INTEGER}, #{barcode,jdbcType=VARCHAR}, #{trafficprice,jdbcType=INTEGER}, 
+      #{goodsid,jdbcType=VARCHAR}, #{keywords,jdbcType=VARCHAR}, #{shopid,jdbcType=VARCHAR}, 
+      #{shopname,jdbcType=VARCHAR}, #{brandname,jdbcType=VARCHAR}, #{thirdcategoryid,jdbcType=VARCHAR}, 
+      #{secondcategoryid,jdbcType=VARCHAR}, #{firstcategoryid,jdbcType=VARCHAR}, #{categoryname,jdbcType=VARCHAR}, 
+      #{logourl,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{standardprice,jdbcType=INTEGER}, 
+      #{saleprice,jdbcType=INTEGER}, #{costprice,jdbcType=INTEGER}, #{trafficprice,jdbcType=INTEGER}, 
       #{traffictype,jdbcType=INTEGER}, #{stock,jdbcType=INTEGER}, #{version,jdbcType=INTEGER}, 
       #{tempstock,jdbcType=INTEGER}, #{flowstatus,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, 
       #{tempversion,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.microshop.servicedao.dbmodel.Mallgoodskind">
+  <insert id="insertSelective" parameterType="com.micromall.daoserver.dbmodel.Mallgoodskind">
     insert into mallgoodskind
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -82,6 +82,9 @@
       </if>
       <if test="goodsid != null">
         goodsId,
+      </if>
+      <if test="keywords != null">
+        keywords,
       </if>
       <if test="shopid != null">
         shopId,
@@ -118,9 +121,6 @@
       </if>
       <if test="costprice != null">
         costPrice,
-      </if>
-      <if test="barcode != null">
-        barCode,
       </if>
       <if test="trafficprice != null">
         trafficPrice,
@@ -166,6 +166,9 @@
       <if test="goodsid != null">
         #{goodsid,jdbcType=VARCHAR},
       </if>
+      <if test="keywords != null">
+        #{keywords,jdbcType=VARCHAR},
+      </if>
       <if test="shopid != null">
         #{shopid,jdbcType=VARCHAR},
       </if>
@@ -176,13 +179,13 @@
         #{brandname,jdbcType=VARCHAR},
       </if>
       <if test="thirdcategoryid != null">
-        #{thirdcategoryid,jdbcType=INTEGER},
+        #{thirdcategoryid,jdbcType=VARCHAR},
       </if>
       <if test="secondcategoryid != null">
-        #{secondcategoryid,jdbcType=INTEGER},
+        #{secondcategoryid,jdbcType=VARCHAR},
       </if>
       <if test="firstcategoryid != null">
-        #{firstcategoryid,jdbcType=INTEGER},
+        #{firstcategoryid,jdbcType=VARCHAR},
       </if>
       <if test="categoryname != null">
         #{categoryname,jdbcType=VARCHAR},
@@ -201,9 +204,6 @@
       </if>
       <if test="costprice != null">
         #{costprice,jdbcType=INTEGER},
-      </if>
-      <if test="barcode != null">
-        #{barcode,jdbcType=VARCHAR},
       </if>
       <if test="trafficprice != null">
         #{trafficprice,jdbcType=INTEGER},
@@ -237,7 +237,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.microshop.servicedao.dbmodel.Mallgoodskind">
+  <update id="updateByPrimaryKeySelective" parameterType="com.micromall.daoserver.dbmodel.Mallgoodskind">
     update mallgoodskind
     <set>
       <if test="sku != null">
@@ -249,6 +249,9 @@
       <if test="goodsid != null">
         goodsId = #{goodsid,jdbcType=VARCHAR},
       </if>
+      <if test="keywords != null">
+        keywords = #{keywords,jdbcType=VARCHAR},
+      </if>
       <if test="shopid != null">
         shopId = #{shopid,jdbcType=VARCHAR},
       </if>
@@ -259,13 +262,13 @@
         brandName = #{brandname,jdbcType=VARCHAR},
       </if>
       <if test="thirdcategoryid != null">
-        thirdCategoryId = #{thirdcategoryid,jdbcType=INTEGER},
+        thirdCategoryId = #{thirdcategoryid,jdbcType=VARCHAR},
       </if>
       <if test="secondcategoryid != null">
-        secondCategoryId = #{secondcategoryid,jdbcType=INTEGER},
+        secondCategoryId = #{secondcategoryid,jdbcType=VARCHAR},
       </if>
       <if test="firstcategoryid != null">
-        firstCategoryId = #{firstcategoryid,jdbcType=INTEGER},
+        firstCategoryId = #{firstcategoryid,jdbcType=VARCHAR},
       </if>
       <if test="categoryname != null">
         categoryName = #{categoryname,jdbcType=VARCHAR},
@@ -284,9 +287,6 @@
       </if>
       <if test="costprice != null">
         costPrice = #{costprice,jdbcType=INTEGER},
-      </if>
-      <if test="barcode != null">
-        barCode = #{barcode,jdbcType=VARCHAR},
       </if>
       <if test="trafficprice != null">
         trafficPrice = #{trafficprice,jdbcType=INTEGER},
@@ -321,24 +321,24 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.microshop.servicedao.dbmodel.Mallgoodskind">
+  <update id="updateByPrimaryKey" parameterType="com.micromall.daoserver.dbmodel.Mallgoodskind">
     update mallgoodskind
     set sku = #{sku,jdbcType=VARCHAR},
       goodsName = #{goodsname,jdbcType=VARCHAR},
       goodsId = #{goodsid,jdbcType=VARCHAR},
+      keywords = #{keywords,jdbcType=VARCHAR},
       shopId = #{shopid,jdbcType=VARCHAR},
       shopName = #{shopname,jdbcType=VARCHAR},
       brandName = #{brandname,jdbcType=VARCHAR},
-      thirdCategoryId = #{thirdcategoryid,jdbcType=INTEGER},
-      secondCategoryId = #{secondcategoryid,jdbcType=INTEGER},
-      firstCategoryId = #{firstcategoryid,jdbcType=INTEGER},
+      thirdCategoryId = #{thirdcategoryid,jdbcType=VARCHAR},
+      secondCategoryId = #{secondcategoryid,jdbcType=VARCHAR},
+      firstCategoryId = #{firstcategoryid,jdbcType=VARCHAR},
       categoryName = #{categoryname,jdbcType=VARCHAR},
       logoUrl = #{logourl,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
       standardPrice = #{standardprice,jdbcType=INTEGER},
       salePrice = #{saleprice,jdbcType=INTEGER},
       costPrice = #{costprice,jdbcType=INTEGER},
-      barCode = #{barcode,jdbcType=VARCHAR},
       trafficPrice = #{trafficprice,jdbcType=INTEGER},
       trafficType = #{traffictype,jdbcType=INTEGER},
       stock = #{stock,jdbcType=INTEGER},

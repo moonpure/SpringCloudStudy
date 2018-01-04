@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.microshop.servicedao.mapper.MallgoodsMapper">
-  <resultMap id="BaseResultMap" type="com.microshop.servicedao.dbmodel.Mallgoods">
+<mapper namespace="com.micromall.daoserver.mapper.MallgoodsMapper">
+  <resultMap id="BaseResultMap" type="com.micromall.daoserver.dbmodel.Mallgoods">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="brandName" jdbcType="VARCHAR" property="brandname" />
     <result column="shopId" jdbcType="VARCHAR" property="shopid" />
-    <result column="firstCategoryId" jdbcType="INTEGER" property="firstcategoryid" />
-    <result column="secondCategoryId" jdbcType="INTEGER" property="secondcategoryid" />
+    <result column="firstCategoryId" jdbcType="VARCHAR" property="firstcategoryid" />
+    <result column="secondCategoryId" jdbcType="VARCHAR" property="secondcategoryid" />
     <result column="categoryName" jdbcType="VARCHAR" property="categoryname" />
-    <result column="thirdCategoryId" jdbcType="INTEGER" property="thirdcategoryid" />
+    <result column="thirdCategoryId" jdbcType="VARCHAR" property="thirdcategoryid" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="standardPrice" jdbcType="INTEGER" property="standardprice" />
     <result column="salePrice" jdbcType="INTEGER" property="saleprice" />
@@ -37,7 +37,7 @@
     delete from mallgoods
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.microshop.servicedao.dbmodel.Mallgoods">
+  <insert id="insert" parameterType="com.micromall.daoserver.dbmodel.Mallgoods">
     insert into mallgoods (id, name, brandName, 
       shopId, firstCategoryId, secondCategoryId, 
       categoryName, thirdCategoryId, title, 
@@ -46,14 +46,14 @@
       flowStatus, saleTotal, state, 
       createTime)
     values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{brandname,jdbcType=VARCHAR}, 
-      #{shopid,jdbcType=VARCHAR}, #{firstcategoryid,jdbcType=INTEGER}, #{secondcategoryid,jdbcType=INTEGER}, 
-      #{categoryname,jdbcType=VARCHAR}, #{thirdcategoryid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{shopid,jdbcType=VARCHAR}, #{firstcategoryid,jdbcType=VARCHAR}, #{secondcategoryid,jdbcType=VARCHAR}, 
+      #{categoryname,jdbcType=VARCHAR}, #{thirdcategoryid,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
       #{standardprice,jdbcType=INTEGER}, #{saleprice,jdbcType=INTEGER}, #{costprice,jdbcType=INTEGER}, 
       #{keywords,jdbcType=VARCHAR}, #{logourl,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
       #{flowstatus,jdbcType=INTEGER}, #{saletotal,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, 
       #{createtime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.microshop.servicedao.dbmodel.Mallgoods">
+  <insert id="insertSelective" parameterType="com.micromall.daoserver.dbmodel.Mallgoods">
     insert into mallgoods
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -128,16 +128,16 @@
         #{shopid,jdbcType=VARCHAR},
       </if>
       <if test="firstcategoryid != null">
-        #{firstcategoryid,jdbcType=INTEGER},
+        #{firstcategoryid,jdbcType=VARCHAR},
       </if>
       <if test="secondcategoryid != null">
-        #{secondcategoryid,jdbcType=INTEGER},
+        #{secondcategoryid,jdbcType=VARCHAR},
       </if>
       <if test="categoryname != null">
         #{categoryname,jdbcType=VARCHAR},
       </if>
       <if test="thirdcategoryid != null">
-        #{thirdcategoryid,jdbcType=INTEGER},
+        #{thirdcategoryid,jdbcType=VARCHAR},
       </if>
       <if test="title != null">
         #{title,jdbcType=VARCHAR},
@@ -174,7 +174,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.microshop.servicedao.dbmodel.Mallgoods">
+  <update id="updateByPrimaryKeySelective" parameterType="com.micromall.daoserver.dbmodel.Mallgoods">
     update mallgoods
     <set>
       <if test="name != null">
@@ -187,16 +187,16 @@
         shopId = #{shopid,jdbcType=VARCHAR},
       </if>
       <if test="firstcategoryid != null">
-        firstCategoryId = #{firstcategoryid,jdbcType=INTEGER},
+        firstCategoryId = #{firstcategoryid,jdbcType=VARCHAR},
       </if>
       <if test="secondcategoryid != null">
-        secondCategoryId = #{secondcategoryid,jdbcType=INTEGER},
+        secondCategoryId = #{secondcategoryid,jdbcType=VARCHAR},
       </if>
       <if test="categoryname != null">
         categoryName = #{categoryname,jdbcType=VARCHAR},
       </if>
       <if test="thirdcategoryid != null">
-        thirdCategoryId = #{thirdcategoryid,jdbcType=INTEGER},
+        thirdCategoryId = #{thirdcategoryid,jdbcType=VARCHAR},
       </if>
       <if test="title != null">
         title = #{title,jdbcType=VARCHAR},
@@ -234,15 +234,15 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.microshop.servicedao.dbmodel.Mallgoods">
+  <update id="updateByPrimaryKey" parameterType="com.micromall.daoserver.dbmodel.Mallgoods">
     update mallgoods
     set name = #{name,jdbcType=VARCHAR},
       brandName = #{brandname,jdbcType=VARCHAR},
       shopId = #{shopid,jdbcType=VARCHAR},
-      firstCategoryId = #{firstcategoryid,jdbcType=INTEGER},
-      secondCategoryId = #{secondcategoryid,jdbcType=INTEGER},
+      firstCategoryId = #{firstcategoryid,jdbcType=VARCHAR},
+      secondCategoryId = #{secondcategoryid,jdbcType=VARCHAR},
       categoryName = #{categoryname,jdbcType=VARCHAR},
-      thirdCategoryId = #{thirdcategoryid,jdbcType=INTEGER},
+      thirdCategoryId = #{thirdcategoryid,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
       standardPrice = #{standardprice,jdbcType=INTEGER},
       salePrice = #{saleprice,jdbcType=INTEGER},

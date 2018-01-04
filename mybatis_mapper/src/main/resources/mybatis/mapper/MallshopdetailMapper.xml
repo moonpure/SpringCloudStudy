@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.microshop.servicedao.mapper.MallshopdetailMapper">
-  <resultMap id="BaseResultMap" type="com.microshop.servicedao.dbmodel.Mallshopdetail">
+<mapper namespace="com.micromall.daoserver.mapper.MallshopdetailMapper">
+  <resultMap id="BaseResultMap" type="com.micromall.daoserver.dbmodel.Mallshopdetail">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="address" jdbcType="VARCHAR" property="address" />
@@ -25,7 +25,7 @@
     delete from mallshopdetail
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.microshop.servicedao.dbmodel.Mallshopdetail">
+  <insert id="insert" parameterType="com.micromall.daoserver.dbmodel.Mallshopdetail">
     insert into mallshopdetail (id, email, address, 
       companyName, taxCheck, bankName, 
       bankAccount, remark, createTime
@@ -35,7 +35,7 @@
       #{bankaccount,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.microshop.servicedao.dbmodel.Mallshopdetail">
+  <insert id="insertSelective" parameterType="com.micromall.daoserver.dbmodel.Mallshopdetail">
     insert into mallshopdetail
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -96,7 +96,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.microshop.servicedao.dbmodel.Mallshopdetail">
+  <update id="updateByPrimaryKeySelective" parameterType="com.micromall.daoserver.dbmodel.Mallshopdetail">
     update mallshopdetail
     <set>
       <if test="email != null">
@@ -126,7 +126,7 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.microshop.servicedao.dbmodel.Mallshopdetail">
+  <update id="updateByPrimaryKey" parameterType="com.micromall.daoserver.dbmodel.Mallshopdetail">
     update mallshopdetail
     set email = #{email,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},

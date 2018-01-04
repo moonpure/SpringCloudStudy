@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.microshop.servicedao.mapper.MallorderdetailMapper">
-  <resultMap id="BaseResultMap" type="com.microshop.servicedao.dbmodel.Mallorderdetail">
+<mapper namespace="com.micromall.daoserver.mapper.MallorderdetailMapper">
+  <resultMap id="BaseResultMap" type="com.micromall.daoserver.dbmodel.Mallorderdetail">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="orderId" jdbcType="VARCHAR" property="orderid" />
     <result column="relationId" jdbcType="VARCHAR" property="relationid" />
@@ -12,11 +12,12 @@
     <result column="costPrice" jdbcType="INTEGER" property="costprice" />
     <result column="trafficPrice" jdbcType="INTEGER" property="trafficprice" />
     <result column="payPrice" jdbcType="INTEGER" property="payprice" />
+    <result column="relationCount" jdbcType="INTEGER" property="relationcount" />
     <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
   </resultMap>
   <sql id="Base_Column_List">
     id, orderId, relationId, shopId, relationType, standardPrice, salePrice, costPrice, 
-    trafficPrice, payPrice, createTime
+    trafficPrice, payPrice, relationCount, createTime
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
@@ -28,17 +29,19 @@
     delete from mallorderdetail
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.microshop.servicedao.dbmodel.Mallorderdetail">
+  <insert id="insert" parameterType="com.micromall.daoserver.dbmodel.Mallorderdetail">
     insert into mallorderdetail (id, orderId, relationId, 
       shopId, relationType, standardPrice, 
       salePrice, costPrice, trafficPrice, 
-      payPrice, createTime)
+      payPrice, relationCount, createTime
+      )
     values (#{id,jdbcType=BIGINT}, #{orderid,jdbcType=VARCHAR}, #{relationid,jdbcType=VARCHAR}, 
       #{shopid,jdbcType=VARCHAR}, #{relationtype,jdbcType=INTEGER}, #{standardprice,jdbcType=INTEGER}, 
       #{saleprice,jdbcType=INTEGER}, #{costprice,jdbcType=INTEGER}, #{trafficprice,jdbcType=INTEGER}, 
-      #{payprice,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP})
+      #{payprice,jdbcType=INTEGER}, #{relationcount,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.microshop.servicedao.dbmodel.Mallorderdetail">
+  <insert id="insertSelective" parameterType="com.micromall.daoserver.dbmodel.Mallorderdetail">
     insert into mallorderdetail
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -70,6 +73,9 @@
       </if>
       <if test="payprice != null">
         payPrice,
+      </if>
+      <if test="relationcount != null">
+        relationCount,
       </if>
       <if test="createtime != null">
         createTime,
@@ -106,12 +112,15 @@
       <if test="payprice != null">
         #{payprice,jdbcType=INTEGER},
       </if>
+      <if test="relationcount != null">
+        #{relationcount,jdbcType=INTEGER},
+      </if>
       <if test="createtime != null">
         #{createtime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.microshop.servicedao.dbmodel.Mallorderdetail">
+  <update id="updateByPrimaryKeySelective" parameterType="com.micromall.daoserver.dbmodel.Mallorderdetail">
     update mallorderdetail
     <set>
       <if test="orderid != null">
@@ -141,13 +150,16 @@
       <if test="payprice != null">
         payPrice = #{payprice,jdbcType=INTEGER},
       </if>
+      <if test="relationcount != null">
+        relationCount = #{relationcount,jdbcType=INTEGER},
+      </if>
       <if test="createtime != null">
         createTime = #{createtime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.microshop.servicedao.dbmodel.Mallorderdetail">
+  <update id="updateByPrimaryKey" parameterType="com.micromall.daoserver.dbmodel.Mallorderdetail">
     update mallorderdetail
     set orderId = #{orderid,jdbcType=VARCHAR},
       relationId = #{relationid,jdbcType=VARCHAR},
@@ -158,6 +170,7 @@
       costPrice = #{costprice,jdbcType=INTEGER},
       trafficPrice = #{trafficprice,jdbcType=INTEGER},
       payPrice = #{payprice,jdbcType=INTEGER},
+      relationCount = #{relationcount,jdbcType=INTEGER},
       createTime = #{createtime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.microshop.servicedao.mapper.MallshoplicenseMapper">
-  <resultMap id="BaseResultMap" type="com.microshop.servicedao.dbmodel.Mallshoplicense">
+<mapper namespace="com.micromall.daoserver.mapper.MallshoplicenseMapper">
+  <resultMap id="BaseResultMap" type="com.micromall.daoserver.dbmodel.Mallshoplicense">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="shopId" jdbcType="VARCHAR" property="shopid" />
     <result column="licenseType" jdbcType="INTEGER" property="licensetype" />
@@ -22,7 +22,7 @@
     delete from mallshoplicense
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.microshop.servicedao.dbmodel.Mallshoplicense">
+  <insert id="insert" parameterType="com.micromall.daoserver.dbmodel.Mallshoplicense">
     insert into mallshoplicense (id, shopId, licenseType, 
       licenseUrl, state, createTime
       )
@@ -30,7 +30,7 @@
       #{licenseurl,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.microshop.servicedao.dbmodel.Mallshoplicense">
+  <insert id="insertSelective" parameterType="com.micromall.daoserver.dbmodel.Mallshoplicense">
     insert into mallshoplicense
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -73,7 +73,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.microshop.servicedao.dbmodel.Mallshoplicense">
+  <update id="updateByPrimaryKeySelective" parameterType="com.micromall.daoserver.dbmodel.Mallshoplicense">
     update mallshoplicense
     <set>
       <if test="shopid != null">
@@ -94,7 +94,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.microshop.servicedao.dbmodel.Mallshoplicense">
+  <update id="updateByPrimaryKey" parameterType="com.micromall.daoserver.dbmodel.Mallshoplicense">
     update mallshoplicense
     set shopId = #{shopid,jdbcType=VARCHAR},
       licenseType = #{licensetype,jdbcType=INTEGER},

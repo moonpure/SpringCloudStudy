@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.microshop.servicedao.mapper.MallorderMapper">
-  <resultMap id="BaseResultMap" type="com.microshop.servicedao.dbmodel.Mallorder">
+<mapper namespace="com.micromall.daoserver.mapper.MallorderMapper">
+  <resultMap id="BaseResultMap" type="com.micromall.daoserver.dbmodel.Mallorder">
     <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="orderCode" jdbcType="VARCHAR" property="ordercode" />
     <result column="userId" jdbcType="VARCHAR" property="userid" />
     <result column="platformId" jdbcType="INTEGER" property="platformid" />
+    <result column="orderType" jdbcType="INTEGER" property="ordertype" />
     <result column="targetId" jdbcType="VARCHAR" property="targetid" />
     <result column="targetName" jdbcType="VARCHAR" property="targetname" />
+    <result column="targetAddress" jdbcType="VARCHAR" property="targetaddress" />
     <result column="targetPhone" jdbcType="VARCHAR" property="targetphone" />
     <result column="standardPrice" jdbcType="INTEGER" property="standardprice" />
     <result column="salePrice" jdbcType="INTEGER" property="saleprice" />
@@ -16,11 +19,16 @@
     <result column="flowStatus" jdbcType="INTEGER" property="flowstatus" />
     <result column="state" jdbcType="INTEGER" property="state" />
     <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="payTime" jdbcType="TIMESTAMP" property="paytime" />
     <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="tradingFlow" jdbcType="VARCHAR" property="tradingflow" />
+    <result column="deliveryTime" jdbcType="TIMESTAMP" property="deliverytime" />
+    <result column="tradeTime" jdbcType="TIMESTAMP" property="tradetime" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, userId, platformId, targetId, targetName, targetPhone, standardPrice, salePrice, 
-    costPrice, trafficPrice, payPrice, flowStatus, state, createTime, updateTime
+    id, orderCode, userId, platformId, orderType, targetId, targetName, targetAddress, 
+    targetPhone, standardPrice, salePrice, costPrice, trafficPrice, payPrice, flowStatus, 
+    state, createTime, payTime, updateTime, tradingFlow, deliveryTime, tradeTime
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -32,25 +40,32 @@
     delete from mallorder
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.microshop.servicedao.dbmodel.Mallorder">
-    insert into mallorder (id, userId, platformId, 
-      targetId, targetName, targetPhone, 
+  <insert id="insert" parameterType="com.micromall.daoserver.dbmodel.Mallorder">
+    insert into mallorder (id, orderCode, userId, 
+      platformId, orderType, targetId, 
+      targetName, targetAddress, targetPhone, 
       standardPrice, salePrice, costPrice, 
       trafficPrice, payPrice, flowStatus, 
-      state, createTime, updateTime
-      )
-    values (#{id,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{platformid,jdbcType=INTEGER}, 
-      #{targetid,jdbcType=VARCHAR}, #{targetname,jdbcType=VARCHAR}, #{targetphone,jdbcType=VARCHAR}, 
+      state, createTime, payTime, 
+      updateTime, tradingFlow, deliveryTime, 
+      tradeTime)
+    values (#{id,jdbcType=VARCHAR}, #{ordercode,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, 
+      #{platformid,jdbcType=INTEGER}, #{ordertype,jdbcType=INTEGER}, #{targetid,jdbcType=VARCHAR}, 
+      #{targetname,jdbcType=VARCHAR}, #{targetaddress,jdbcType=VARCHAR}, #{targetphone,jdbcType=VARCHAR}, 
       #{standardprice,jdbcType=INTEGER}, #{saleprice,jdbcType=INTEGER}, #{costprice,jdbcType=INTEGER}, 
       #{trafficprice,jdbcType=INTEGER}, #{payprice,jdbcType=INTEGER}, #{flowstatus,jdbcType=INTEGER}, 
-      #{state,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}
-      )
+      #{state,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{paytime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{tradingflow,jdbcType=VARCHAR}, #{deliverytime,jdbcType=TIMESTAMP}, 
+      #{tradetime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.microshop.servicedao.dbmodel.Mallorder">
+  <insert id="insertSelective" parameterType="com.micromall.daoserver.dbmodel.Mallorder">
     insert into mallorder
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
+      </if>
+      <if test="ordercode != null">
+        orderCode,
       </if>
       <if test="userid != null">
         userId,
@@ -58,11 +73,17 @@
       <if test="platformid != null">
         platformId,
       </if>
+      <if test="ordertype != null">
+        orderType,
+      </if>
       <if test="targetid != null">
         targetId,
       </if>
       <if test="targetname != null">
         targetName,
+      </if>
+      <if test="targetaddress != null">
+        targetAddress,
       </if>
       <if test="targetphone != null">
         targetPhone,
@@ -91,13 +112,28 @@
       <if test="createtime != null">
         createTime,
       </if>
+      <if test="paytime != null">
+        payTime,
+      </if>
       <if test="updatetime != null">
         updateTime,
+      </if>
+      <if test="tradingflow != null">
+        tradingFlow,
+      </if>
+      <if test="deliverytime != null">
+        deliveryTime,
+      </if>
+      <if test="tradetime != null">
+        tradeTime,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="ordercode != null">
+        #{ordercode,jdbcType=VARCHAR},
       </if>
       <if test="userid != null">
         #{userid,jdbcType=VARCHAR},
@@ -105,11 +141,17 @@
       <if test="platformid != null">
         #{platformid,jdbcType=INTEGER},
       </if>
+      <if test="ordertype != null">
+        #{ordertype,jdbcType=INTEGER},
+      </if>
       <if test="targetid != null">
         #{targetid,jdbcType=VARCHAR},
       </if>
       <if test="targetname != null">
         #{targetname,jdbcType=VARCHAR},
+      </if>
+      <if test="targetaddress != null">
+        #{targetaddress,jdbcType=VARCHAR},
       </if>
       <if test="targetphone != null">
         #{targetphone,jdbcType=VARCHAR},
@@ -138,25 +180,46 @@
       <if test="createtime != null">
         #{createtime,jdbcType=TIMESTAMP},
       </if>
+      <if test="paytime != null">
+        #{paytime,jdbcType=TIMESTAMP},
+      </if>
       <if test="updatetime != null">
         #{updatetime,jdbcType=TIMESTAMP},
       </if>
+      <if test="tradingflow != null">
+        #{tradingflow,jdbcType=VARCHAR},
+      </if>
+      <if test="deliverytime != null">
+        #{deliverytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradetime != null">
+        #{tradetime,jdbcType=TIMESTAMP},
+      </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.microshop.servicedao.dbmodel.Mallorder">
+  <update id="updateByPrimaryKeySelective" parameterType="com.micromall.daoserver.dbmodel.Mallorder">
     update mallorder
     <set>
+      <if test="ordercode != null">
+        orderCode = #{ordercode,jdbcType=VARCHAR},
+      </if>
       <if test="userid != null">
         userId = #{userid,jdbcType=VARCHAR},
       </if>
       <if test="platformid != null">
         platformId = #{platformid,jdbcType=INTEGER},
       </if>
+      <if test="ordertype != null">
+        orderType = #{ordertype,jdbcType=INTEGER},
+      </if>
       <if test="targetid != null">
         targetId = #{targetid,jdbcType=VARCHAR},
       </if>
       <if test="targetname != null">
         targetName = #{targetname,jdbcType=VARCHAR},
+      </if>
+      <if test="targetaddress != null">
+        targetAddress = #{targetaddress,jdbcType=VARCHAR},
       </if>
       <if test="targetphone != null">
         targetPhone = #{targetphone,jdbcType=VARCHAR},
@@ -185,18 +248,33 @@
       <if test="createtime != null">
         createTime = #{createtime,jdbcType=TIMESTAMP},
       </if>
+      <if test="paytime != null">
+        payTime = #{paytime,jdbcType=TIMESTAMP},
+      </if>
       <if test="updatetime != null">
         updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradingflow != null">
+        tradingFlow = #{tradingflow,jdbcType=VARCHAR},
+      </if>
+      <if test="deliverytime != null">
+        deliveryTime = #{deliverytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradetime != null">
+        tradeTime = #{tradetime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.microshop.servicedao.dbmodel.Mallorder">
+  <update id="updateByPrimaryKey" parameterType="com.micromall.daoserver.dbmodel.Mallorder">
     update mallorder
-    set userId = #{userid,jdbcType=VARCHAR},
+    set orderCode = #{ordercode,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=VARCHAR},
       platformId = #{platformid,jdbcType=INTEGER},
+      orderType = #{ordertype,jdbcType=INTEGER},
       targetId = #{targetid,jdbcType=VARCHAR},
       targetName = #{targetname,jdbcType=VARCHAR},
+      targetAddress = #{targetaddress,jdbcType=VARCHAR},
       targetPhone = #{targetphone,jdbcType=VARCHAR},
       standardPrice = #{standardprice,jdbcType=INTEGER},
       salePrice = #{saleprice,jdbcType=INTEGER},
@@ -206,7 +284,11 @@
       flowStatus = #{flowstatus,jdbcType=INTEGER},
       state = #{state,jdbcType=INTEGER},
       createTime = #{createtime,jdbcType=TIMESTAMP},
-      updateTime = #{updatetime,jdbcType=TIMESTAMP}
+      payTime = #{paytime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      tradingFlow = #{tradingflow,jdbcType=VARCHAR},
+      deliveryTime = #{deliverytime,jdbcType=TIMESTAMP},
+      tradeTime = #{tradetime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>
